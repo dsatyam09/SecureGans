@@ -1,9 +1,9 @@
 {
-  "input_images_path": "data/lfw-deepfunneled",
+  "input_images_path": "data/lfw-deep",
   "dataset_archive_download_url": "http://vis-www.cs.umass.edu/lfw/lfw-deepfunneled.tgz",
   "path_to_patterns": "data/mask_patterns",
-  "train_data_path": "/kaggle/input/unmask-my-celeb-a-hq/test",
-  "test_data_path": "/kaggle/input/unmask-my-celeb-a-hq/train",
+  "train_data_path": "/kaggle/input/unmask-my-celeb-a-hq/train",
+  "test_data_path": "/kaggle/input/unmask-my-celeb-a-hq/test",
   "landmarks_predictor_path": "shape_predictor_68_face_landmarks.dat",
   "landmarks_predictor_download_url": "http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2",
   "minimal_confidence": 0.8,
