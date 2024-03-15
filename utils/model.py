@@ -176,7 +176,7 @@ class Mask2FaceModel(tf.keras.models.Model):
                 y_pred * 255.0
             ]
             image = np.concatenate(all_images, axis=1)
-            cv2.imwrite(os.path.join(result_dir, f"{i}.png"), image)
+            cv2.imwrite(os.path.join(result_dir, f"{i}.jpg"), image)
 
     def summary(self):
         """
@@ -280,8 +280,8 @@ class Mask2FaceModel(tf.keras.models.Model):
                     and second with validation data (tuple with (input images, output images))
                  Else: Tuple with testing data - (input images, output images)
         """
-        images = sorted(glob(os.path.join(input_path, "*.png")))
-        masks = sorted(glob(os.path.join(output_path, "*.png")))
+        images = sorted(glob(os.path.join(input_path, "*.jpg")))
+        masks = sorted(glob(os.path.join(output_path, "*.jpg")))
         if len(images) == 0:
             raise TypeError(f'No images found in {input_path}')
         if len(masks) == 0:
