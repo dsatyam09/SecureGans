@@ -60,14 +60,15 @@ class Mask2FaceModel(tf.keras.models.Model):
     @staticmethod
     def load_model(model_path, configuration=None):
         """
-        Loads saved h5 file with trained model.
+        Loads saved model in TensorFlow SavedModel format.
         @param configuration: Optional instance of Configuration with config JSON
-        @param model_path: Path to h5 file
+        @param model_path: Path to SavedModel directory (.keras format)
         @return: Mask2FaceModel
         """
         with CustomObjectScope({'ssim_loss': Mask2FaceModel.ssim_loss, 'ssim_l1_loss': Mask2FaceModel.ssim_l1_loss}):
             model = tf.keras.models.load_model(model_path)
         return Mask2FaceModel(model, configuration)
+
 
     @staticmethod
     def build_model(architecture: UNet, input_size: Tuple[int, int, int], filters: Optional[Tuple] = None,
@@ -120,10 +121,13 @@ class Mask2FaceModel(tf.keras.models.Model):
         # define callbacks
         callbacks = [
             ModelCheckpoint(
-                f'models/model_epochs-{epochs}_batch-{batch_size}_loss-{loss_function}_{Mask2FaceModel.get_datetime_string()}.h5'),
+                f'models/model_epochs-{epochs}_batch-{batch_size}_loss-{loss_function}_{Mask2FaceModel.get_datetime_string()}.keras',
+                save_format='tf'
+                ),
             EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
         ]
 
+                  
         # evaluation before training
         results = self.model.evaluate(test_dataset)
         print("- TEST -> LOSS: {:10.4f}, ACC: {:10.4f}, RECALL: {:10.4f}, PRECISION: {:10.4f}".format(*results))
