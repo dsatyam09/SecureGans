@@ -20,6 +20,6 @@
   "mask_filter_output": false,
   "mask_filter_radius": 2,
   "test_results_dir": "data/results/",
-  "train_data_limit": 15000,
-  "test_data_limit": 1000
+  "train_data_limit": 10000,
+  "test_data_limit": 100
 }
